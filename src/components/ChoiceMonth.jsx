@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-//TODO : 조건부 스타일링(클릭된 버튼 활성화)
 const ChoiceMonthButtonContainer = styled.div`
   background-color: white;
   border: none;
@@ -14,29 +13,32 @@ const ChoiceMonthButtonContainer = styled.div`
 `;
 const MonthButton = styled.button`
   border: none;
+  background-color: ${(props) => (props.$active ? "#4a88c2" : "lightgray")};
+  color: ${(props) => (props.$active ? "white" : "black")};
   border-radius: 10px;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  &:hover {
+    background-color: ${(props) => (props.$active ? "#0E487D" : "grey")};
+  }
 `;
 const ChoiceMonth = () => {
-  //조건부 스타일링
-  //클릭했을때 어디가 활성화되었는지 배경색으로 표현
+  const month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+  const [activeIndex, setActiveIndex] = useState(null);
+  const handleClick = (index) => {
+    setActiveIndex(index);
+  };
+
   return (
     //TODO 버튼 map으로 리팩토링
     <ChoiceMonthButtonContainer>
-      <MonthButton>1월</MonthButton>
-      <MonthButton>2월</MonthButton>
-      <MonthButton>3월</MonthButton>
-      <MonthButton>4월</MonthButton>
-      <MonthButton>5월</MonthButton>
-      <MonthButton>6월</MonthButton>
-      <MonthButton>7월</MonthButton>
-      <MonthButton>8월</MonthButton>
-      <MonthButton>9월</MonthButton>
-      <MonthButton>10월</MonthButton>
-      <MonthButton>11월</MonthButton>
-      <MonthButton>12월</MonthButton>
+      {month.map((month, index) => (
+        <MonthButton key={index} $active={activeIndex === index} onClick={() => handleClick(index)}>
+          {month}번
+        </MonthButton>
+      ))}
     </ChoiceMonthButtonContainer>
   );
 };
