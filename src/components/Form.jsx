@@ -4,7 +4,7 @@ import styled from "styled-components";
 const FormWrapContainer = styled.form`
   border-radius: 10px;
   background-color: white;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 10px 20px;
   display: flex;
   justify-content: space-around;

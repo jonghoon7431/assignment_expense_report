@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ChoiceMonth from "./ChoiceMonth";
 import Form from "./Form";
 
 const WrapContainer = styled.div`
   height: auto;
   padding: 5px 20px;
   margin: 20px auto;
-  border: 1px solid white;
+  background-color: #b4d6f6;
+  /* border: 1px solid white; */
   border-radius: 10px;
 `;
 const Container = () => {
@@ -23,6 +25,7 @@ const Container = () => {
   return (
     <WrapContainer>
       <Form setData={setData} />
+      <ChoiceMonth />
     </WrapContainer>
   );
 };
