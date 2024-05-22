@@ -32,11 +32,10 @@ const ChoiceMonth = () => {
   };
 
   return (
-    //TODO 버튼 map으로 리팩토링
     <ChoiceMonthButtonContainer>
       {month.map((month, index) => (
         <MonthButton key={index} $active={activeIndex === index} onClick={() => handleClick(index)}>
-          {month}번
+          {month}월
         </MonthButton>
       ))}
     </ChoiceMonthButtonContainer>

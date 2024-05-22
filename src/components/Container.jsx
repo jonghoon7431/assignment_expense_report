@@ -7,8 +7,7 @@ const WrapContainer = styled.div`
   height: auto;
   padding: 5px 20px;
   margin: 20px auto;
-  background-color: #b4d6f6;
-  /* border: 1px solid white; */
+  background-color: var(--light-blue);
   border-radius: 10px;
 `;
 const Container = () => {

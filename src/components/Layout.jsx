@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StBackground = styled.div`
   position: fixed;
-  background-color: #71a1cd;
+  background-color: var(--blue);
   width: 100%;
   height: 100vh;
   overflow: auto;

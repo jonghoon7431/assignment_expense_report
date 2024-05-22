@@ -17,16 +17,19 @@ const StFormButton = styled.button`
   width: 60px;
   border: none;
   border-radius: 10px;
-  background-color: #4a88c2;
+  background-color: var(--blue);
   color: white;
   font-size: 1rem;
   cursor: pointer;
+  &:hover {
+    background-color: var(--dark-blue);
+  }
 `;
-
+console.log(new Date().getFullYear());
 const Form = ({ setData }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
+    const formData = new FormData(e.target);
     const date = formData.get("date");
     const item = formData.get("item");
     const amount = formData.get("amount");
@@ -39,7 +42,13 @@ const Form = ({ setData }) => {
       amount,
       description,
     };
+    //빈칸 입력시 alert
+    if (!date || !item.trim() || !amount.trim() || !date.trim()) return alert("정보를 모두 기입해주세요");
+    //날짜가 올해 년도가 아닐시 alert
+    if (new Date().getFullYear() !== +date.slice(0, 4)) return alert("올해의 지출 정보만 담을 수 있습니다");
+
     setData((prev) => [nextData, ...prev]);
+    e.target.reset();
   };
   return (
     <FormWrapContainer onSubmit={onSubmit}>
