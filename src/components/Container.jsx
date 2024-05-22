@@ -19,6 +19,7 @@ const Container = () => {
       description: "세광양대창",
     },
   ]);
+  console.log(data);
   return (
     <WrapContainer>
       <Form setData={setData} />

@@ -24,23 +24,40 @@ const StFormButton = styled.button`
 `;
 
 const Form = ({ setData }) => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    const date = formData.get("date");
+    const item = formData.get("item");
+    const amount = formData.get("amount");
+    const description = formData.get("description");
+
+    const nextData = {
+      id: crypto.randomUUID(),
+      date,
+      item,
+      amount,
+      description,
+    };
+    setData((prev) => [nextData, ...prev]);
+  };
   return (
-    <FormWrapContainer>
+    <FormWrapContainer onSubmit={onSubmit}>
       <StInputDiv>
         <label>날짜</label>
-        <input type="date" />
+        <input type="date" name="date" />
       </StInputDiv>
       <StInputDiv>
         <label>항목</label>
-        <input type="text" />
+        <input type="text" name="item" />
       </StInputDiv>
       <StInputDiv>
         <label>금액</label>
-        <input type="number" />
+        <input type="number" name="amount" />
       </StInputDiv>
       <StInputDiv>
         <label>내용</label>
-        <input type="text" />
+        <input type="text" name="description" />
       </StInputDiv>
       <StFormButton>저장</StFormButton>
     </FormWrapContainer>
