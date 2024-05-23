@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const ChoiceMonthButtonContainer = styled.div`
@@ -13,7 +13,7 @@ const ChoiceMonthButtonContainer = styled.div`
 `;
 const MonthButton = styled.button`
   border: none;
-  background-color: ${(props) => (props.$active ? "#4a88c2" : "lightgray")};
+  background-color: ${(props) => (props.$active ? "#0E487D" : "lightgray")};
   color: ${(props) => (props.$active ? "white" : "black")};
   border-radius: 10px;
   font-size: 1.5rem;
@@ -26,10 +26,21 @@ const MonthButton = styled.button`
 const ChoiceMonth = () => {
   const month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(
+    localStorage.getItem("month") ? JSON.parse(localStorage.getItem("month")) : []
+  );
   const handleClick = (index) => {
     setActiveIndex(index);
   };
+  // useEffect(() => {
+  //   const getMonth = localStorage.getItem("month");
+  //   if (getMonth) {
+  //     setActiveIndex(JSON.parse(getMonth));
+  //   }
+  // }, []);
+  useEffect(() => {
+    localStorage.setItem("month", JSON.parse(activeIndex));
+  }, [activeIndex]);
 
   return (
     <ChoiceMonthButtonContainer>

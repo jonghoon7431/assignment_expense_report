@@ -25,7 +25,7 @@ const StFormButton = styled.button`
     background-color: var(--dark-blue);
   }
 `;
-console.log(new Date().getFullYear());
+
 const Form = ({ setData }) => {
   const onSubmit = (e) => {
     e.preventDefault();
