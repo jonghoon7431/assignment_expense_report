@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ReportList = ({ data, activeIndex }) => {
-  // const location = useLocation;
   return (
     <ReportListContainer>
       <H3
@@ -21,7 +20,9 @@ const ReportList = ({ data, activeIndex }) => {
             <Link
               to="details/${data.id}"
               key={data.id}
-              state={{ data: data }}
+              state={{
+                data: data,
+              }}
               style={{
                 textDecoration: "none",
                 color: "black",

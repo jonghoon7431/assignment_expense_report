@@ -11,12 +11,7 @@ const ChoiceMonth = ({ data }) => {
   const handleClick = (index) => {
     setActiveIndex(index);
   };
-  // useEffect(() => {
-  //   const getMonth = localStorage.getItem("month");
-  //   if (getMonth) {
-  //     setActiveIndex(JSON.parse(getMonth));
-  //   }
-  // }, []);
+
   useEffect(() => {
     localStorage.setItem("month", JSON.parse(activeIndex));
   }, [activeIndex]);

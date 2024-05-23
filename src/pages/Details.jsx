@@ -6,8 +6,14 @@ const Details = () => {
   const location = useLocation();
   console.log(location);
   const data = location.state.data;
-  // const setData = location.state.setData;
+  //TODO 데이터 수정 삭제 : localstorage or 쿼리스트링으로
+  //수정 - 디테일 페이지에서 상태 하나 새로 선언해서,
+  //input값 받은 뒤 데이터를home으로 보내서 일치하는 data 값 수정?
+  //삭제- url 뒤 id값 제대로 들어오나 확인, id 값 가져와서 일치하는 애 제거?
+  //근데 그게 디테일 페이지에서 되나?
   const navigate = useNavigate();
+
+  const deleteList = location.state.deleteList;
 
   return (
     <DetailDiv>
@@ -29,8 +35,9 @@ const Details = () => {
           <input type="text" value={data.description} />
         </InputDiv>
         <ButtonDiv>
+          {/* TODO 수정, 삭제 구현  */}
           <button>수정</button>
-          <button>삭제</button>
+          <button onClick={deleteList}>삭제</button>
           <button onClick={() => navigate("/")}>뒤로가기</button>
         </ButtonDiv>
       </WrapContainer>
