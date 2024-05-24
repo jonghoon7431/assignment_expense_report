@@ -1,33 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { DataContext } from "../context/DataContext";
 
-const FormWrapContainer = styled.form`
-  border-radius: 10px;
-  background-color: white;
-  margin: 20px auto;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-around;
-`;
-const StInputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const StFormButton = styled.button`
-  width: 60px;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--blue);
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: var(--dark-blue);
-  }
-`;
+const Form = () => {
+  const { setData } = useContext(DataContext);
 
-const Form = ({ setData }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -59,19 +37,44 @@ const Form = ({ setData }) => {
       </StInputDiv>
       <StInputDiv>
         <label>항목</label>
-        <input type="text" name="item" />
+        <input type="text" name="item" autoComplete="off" />
       </StInputDiv>
       <StInputDiv>
         <label>금액</label>
-        <input type="number" name="amount" />
+        <input type="number" name="amount" autoComplete="off" />
       </StInputDiv>
       <StInputDiv>
         <label>내용</label>
-        <input type="text" name="description" />
+        <input type="text" name="description" autoComplete="off" />
       </StInputDiv>
       <StFormButton>저장</StFormButton>
     </FormWrapContainer>
   );
 };
 
+const FormWrapContainer = styled.form`
+  border-radius: 10px;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+`;
+const StInputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  & input {
+  }
+`;
+const StFormButton = styled.button`
+  width: 60px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--blue);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+`;
 export default Form;

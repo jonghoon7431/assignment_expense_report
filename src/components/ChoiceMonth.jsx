@@ -2,30 +2,31 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ReportList from "./ReportList";
 
-const ChoiceMonth = ({ data }) => {
-  const month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+const ChoiceMonth = () => {
+  const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-  const [activeIndex, setActiveIndex] = useState(
-    localStorage.getItem("month") ? JSON.parse(localStorage.getItem("month")) : []
+  const [activeMonth, setActiveMonth] = useState(
+    localStorage.getItem("month") ? Number(localStorage.getItem("month")) : 1
   );
-  const handleClick = (index) => {
-    setActiveIndex(index);
+  const handleClick = (month) => {
+    setActiveMonth(month);
   };
 
   useEffect(() => {
-    localStorage.setItem("month", JSON.parse(activeIndex));
-  }, [activeIndex]);
-
+    localStorage.setItem("month", activeMonth);
+  }, [activeMonth]);
+  console.log(activeMonth);
   return (
     <div>
       <ChoiceMonthButtonContainer>
-        {month.map((month, index) => (
-          <MonthButton key={index} $active={activeIndex === index} onClick={() => handleClick(index)}>
+        {month.map((month) => (
+          <MonthButton key={month} $active={activeMonth === month} onClick={() => handleClick(month)}>
             {month}월
           </MonthButton>
         ))}
       </ChoiceMonthButtonContainer>
-      <ReportList data={data} activeIndex={activeIndex} />
+      {/* 내역 컴포넌트 */}
+      <ReportList activeMonth={activeMonth} />
     </div>
   );
 };
@@ -38,7 +39,7 @@ const ChoiceMonthButtonContainer = styled.div`
   grid-template-columns: repeat(6, 1fr);
   gap: 1.2rem;
   padding: 1.2rem 2rem;
-  margin: 10px 0;
+  margin: 20px 0;
 `;
 const MonthButton = styled.button`
   border: none;

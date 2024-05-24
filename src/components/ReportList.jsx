@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { DataContext } from "../context/DataContext";
 
-const ReportList = ({ data, activeIndex }) => {
+const ReportList = ({ activeMonth }) => {
+  const { data } = useContext(DataContext);
+
   return (
     <ReportListContainer>
       <H3
@@ -15,8 +18,9 @@ const ReportList = ({ data, activeIndex }) => {
       </H3>
       <ReportListUl>
         {data
-          .filter((prevData) => Number(prevData.date[6]) === activeIndex + 1)
+          .filter((prevData) => Number(prevData.date.split("-")[1]) === activeMonth)
           .map((data) => (
+            //상세내역으로 이동
             <Link
               to={`details/${data.id}`}
               key={data.id}
@@ -40,6 +44,7 @@ const ReportList = ({ data, activeIndex }) => {
 
 const ReportListContainer = styled.div`
   background-color: white;
+  border-radius: 10px;
   height: 450px;
   overflow: auto;
 `;
@@ -50,12 +55,16 @@ const ReportListUl = styled.ul`
   padding: 1rem;
 `;
 const List = styled.li`
-  border: 1px solid var(--blue);
+  border: 1px solid var(--light-blue);
+  border-radius: 10px;
   margin: 10px;
   padding: 1rem;
+  box-shadow: 1px 1px 1px 2px var(--blue);
   cursor: pointer;
-
-  /* box-shadow: 5px 5px 5px 5px grey; */
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s all;
+  }
 `;
 
 export default ReportList;

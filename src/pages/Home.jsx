@@ -1,8 +1,8 @@
 import React from "react";
 import Container from "../components/Container";
 
-const Home = ({ data, setData }) => {
-  return <Container data={data} setData={setData} />;
+const Home = () => {
+  return <Container />;
 };
 
 export default Home;

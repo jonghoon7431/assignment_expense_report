@@ -1,11 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { DataContext } from "../context/DataContext";
 
-const Details = ({ data, setData }) => {
+const Details = () => {
   const navigate = useNavigate();
   const params = useParams();
 
+  const { data, setData } = useContext(DataContext);
   const detailData = data.find((detailData) => detailData.id === params.id);
 
   //삭제
@@ -25,7 +27,7 @@ const Details = ({ data, setData }) => {
     amount: detailData.amount,
     description: detailData.description,
   });
-  const { id, date, item, amount, description } = edit;
+  const { date, item, amount, description } = edit;
 
   const onChangeHandler = (e) => {
     setEdit({ ...edit, [e.target.name]: e.target.value });
@@ -66,31 +68,51 @@ const Details = ({ data, setData }) => {
 
 const DetailDiv = styled.div`
   width: 100%;
+  height: auto;
   background-color: white;
-  margin: 4rem auto;
+  border-radius: 10px;
+  /* border: none; */
+  margin: 20% auto;
+  padding: 1rem;
 `;
 const WrapContainer = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
-  padding: 0.5;
 
   & input {
     margin: 1rem 0;
+    width: 60%;
   }
 `;
 const InputDiv = styled.div`
+  font-size: 1.4rem;
   display: flex;
+  width: 60%;
   flex-direction: row;
   align-items: center;
+  margin: auto;
   justify-content: center;
-  & label {
-    margin-right: 1rem;
+  & label,
+  input {
+    margin: 1rem;
   }
 `;
 const ButtonDiv = styled.div`
   display: flex;
-  justify-content: center;
+  margin: auto;
+  & button {
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--dark-blue);
+      color: white;
+    }
+  }
 `;
 
 export default Details;

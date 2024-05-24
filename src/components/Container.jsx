@@ -3,18 +3,18 @@ import styled from "styled-components";
 import ChoiceMonth from "./ChoiceMonth";
 import Form from "./Form";
 
-const Container = ({ data, setData }) => {
+const Container = () => {
   return (
     <WrapContainer>
-      <Form setData={setData} />
-      <ChoiceMonth data={data} />
+      <Form />
+      <ChoiceMonth />
     </WrapContainer>
   );
 };
 
 const WrapContainer = styled.div`
   height: auto;
-  padding: 5px 20px;
+  padding: 2rem;
   margin: 20px auto;
   background-color: var(--light-blue);
   border-radius: 10px;
