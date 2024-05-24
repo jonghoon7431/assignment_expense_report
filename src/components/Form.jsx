@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const FormWrapContainer = styled.form`
   border-radius: 10px;
@@ -36,7 +37,7 @@ const Form = ({ setData }) => {
     const description = formData.get("description");
 
     const nextData = {
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       date,
       item,
       amount,

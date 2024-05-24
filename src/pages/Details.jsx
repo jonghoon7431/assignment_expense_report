@@ -1,42 +1,61 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useRef, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Details = () => {
-  const location = useLocation();
-  console.log(location);
-  const data = location.state.data;
-  //TODO 데이터 수정 삭제 : localstorage or 쿼리스트링으로
-  //수정 - 디테일 페이지에서 상태 하나 새로 선언해서,
-  //input값 받은 뒤 데이터를home으로 보내서 일치하는 data 값 수정?
-  //삭제- url 뒤 id값 제대로 들어오나 확인, id 값 가져와서 일치하는 애 제거?
-  //근데 그게 디테일 페이지에서 되나?
+const Details = ({ data, setData }) => {
   const navigate = useNavigate();
+  const params = useParams();
 
-  const deleteList = location.state.deleteList;
+  const detailData = data.find((detailData) => detailData.id === params.id);
 
+  //삭제
+  const deleteList = () => {
+    if (!confirm("정말 이 항목을 삭제하시겠습니까?")) return;
+    setData((prev) => prev.filter((data) => data.id !== detailData.id));
+    navigate("/");
+  };
+
+  //수정- 유효성 검사 추가해야함
+  const inputRef = useRef([]);
+
+  const [edit, setEdit] = useState({
+    id: detailData.id,
+    date: detailData.date,
+    item: detailData.item,
+    amount: detailData.amount,
+    description: detailData.description,
+  });
+  const { id, date, item, amount, description } = edit;
+
+  const onChangeHandler = (e) => {
+    setEdit({ ...edit, [e.target.name]: e.target.value });
+  };
+
+  const editDetailItem = () => {
+    setData(data.map((data) => (data.id === params.id ? edit : data)));
+    navigate("/");
+  };
   return (
     <DetailDiv>
       <WrapContainer>
         <InputDiv>
           <label>날짜: </label>
-          <input type="text" value={data.date} />
+          <input type="text" value={date} name="date" onChange={onChangeHandler} />
         </InputDiv>
         <InputDiv>
           <label>항목: </label>
-          <input type="text" value={data.item} />
+          <input type="text" value={item} name="item" onChange={onChangeHandler} />
         </InputDiv>
         <InputDiv>
           <label>금액: </label>
-          <input type="number" value={data.amount} />
+          <input type="number" value={amount} name="amount" onChange={onChangeHandler} />
         </InputDiv>
         <InputDiv>
           <label>내용: </label>
-          <input type="text" value={data.description} />
+          <input type="text" value={description} name="description" onChange={onChangeHandler} />
         </InputDiv>
         <ButtonDiv>
-          {/* TODO 수정, 삭제 구현  */}
-          <button>수정</button>
+          <button onClick={editDetailItem}>수정</button>
           <button onClick={deleteList}>삭제</button>
           <button onClick={() => navigate("/")}>뒤로가기</button>
         </ButtonDiv>

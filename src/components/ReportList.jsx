@@ -18,11 +18,8 @@ const ReportList = ({ data, activeIndex }) => {
           .filter((prevData) => Number(prevData.date[6]) === activeIndex + 1)
           .map((data) => (
             <Link
-              to="details/${data.id}"
+              to={`details/${data.id}`}
               key={data.id}
-              state={{
-                data: data,
-              }}
               style={{
                 textDecoration: "none",
                 color: "black",
