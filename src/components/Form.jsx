@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { DataContext } from "../context/DataContext";
+import { addFormData } from "../redux/slices/formSlice";
 
 const Form = () => {
-  const { setData } = useContext(DataContext);
-
+  const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -14,19 +14,12 @@ const Form = () => {
     const amount = formData.get("amount");
     const description = formData.get("description");
 
-    const nextData = {
-      id: uuidv4(),
-      date,
-      item,
-      amount,
-      description,
-    };
-    //빈칸 입력시 alert
+    //빈칸 입력시
     if (!date || !item.trim() || !amount.trim() || !date.trim()) return alert("정보를 모두 기입해주세요");
-    //날짜가 올해 년도가 아닐시 alert
+    //올해가 아닌 년도 입력시
     if (new Date().getFullYear() !== +date.slice(0, 4)) return alert("올해의 지출 정보만 담을 수 있습니다");
 
-    setData((prev) => [nextData, ...prev]);
+    dispatch(addFormData({ id: uuidv4(), date, item, amount, description }));
     e.target.reset();
   };
   return (

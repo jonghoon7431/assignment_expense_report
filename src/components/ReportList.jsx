@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { DataContext } from "../context/DataContext";
 
 const ReportList = ({ activeMonth }) => {
-  const { data } = useContext(DataContext);
+  const data = useSelector((state) => state.data);
 
   return (
     <ReportListContainer>
@@ -20,7 +20,6 @@ const ReportList = ({ activeMonth }) => {
         {data
           .filter((prevData) => Number(prevData.date.split("-")[1]) === activeMonth)
           .map((data) => (
-            //상세내역으로 이동
             <Link
               to={`details/${data.id}`}
               key={data.id}

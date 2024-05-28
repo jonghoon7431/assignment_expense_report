@@ -1,32 +1,37 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { DataContext } from "../context/DataContext";
+import { deleteData, editData } from "../redux/slices/formSlice";
 
 const Details = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const params = useParams();
 
-  const { data, setData } = useContext(DataContext);
-  const detailData = data.find((detailData) => detailData.id === params.id);
+  const params = useParams();
+  const paramsId = params.id;
+
+  const data = useSelector((state) => state.data);
+  const detailData = data.find((data) => data.id === paramsId);
 
   //삭제
   const deleteList = () => {
     if (!confirm("정말 이 항목을 삭제하시겠습니까?")) return;
-    setData((prev) => prev.filter((data) => data.id !== detailData.id));
+    dispatch(deleteData(detailData));
+    alert("삭제되었습니다");
     navigate("/");
   };
 
-  //수정- 유효성 검사 추가해야함
-  const inputRef = useRef([]);
-
-  const [edit, setEdit] = useState({
+  //수정
+  const newData = {
     id: detailData.id,
     date: detailData.date,
     item: detailData.item,
     amount: detailData.amount,
     description: detailData.description,
-  });
+  };
+  const [edit, setEdit] = useState(newData);
+
   const { date, item, amount, description } = edit;
 
   const onChangeHandler = (e) => {
@@ -34,9 +39,17 @@ const Details = () => {
   };
 
   const editDetailItem = () => {
-    setData(data.map((data) => (data.id === params.id ? edit : data)));
+    //빈칸 입력시
+    if (!date.trim() || !item.trim() || !amount) return alert("날짜, 항목, 금액은 공백 입력이 불가합니다");
+    //날짜 유효성검사 yyyy-mm-dd
+    const format = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    if (!format.test(date)) return alert("날짜가 유효하지 않습니다. 날짜 형식 : YYYY-MM-YY");
+
+    alert("수정되었습니다");
+    dispatch(editData({ paramsId, edit }));
     navigate("/");
   };
+
   return (
     <DetailDiv>
       <WrapContainer>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
   {
@@ -52,9 +52,27 @@ const initialState = [
       "자율주행차량 운전주행모드 자동 전환용 인식률 90% 이상의 다중 센서 기반 운전자 상태 인식 및 상황 인식 원천 기술 개발",
   },
 ];
-export const DataContext = createContext(null);
 
-export const ExpenseData = ({ children }) => {
-  const [data, setData] = useState(initialState);
-  return <DataContext.Provider value={{ data, setData }}>{children}</DataContext.Provider>;
-};
+const formSlice = createSlice({
+  name: "data",
+  initialState,
+  reducers: {
+    //추가
+    addFormData: (state, action) => {
+      return [action.payload, ...state];
+    },
+    //수정
+    editData: (state, action) => {
+      const { paramsId, edit } = action.payload;
+      return state.map((data) => (data.id === paramsId ? { ...data, ...edit } : data));
+    },
+    //삭제
+    deleteData: (state, action) => {
+      const detailData = action.payload;
+      return state.filter((data) => data.id !== detailData.id);
+    },
+  },
+});
+
+export const { addFormData, editData, deleteData } = formSlice.actions;
+export default formSlice.reducer;

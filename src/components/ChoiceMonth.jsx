@@ -3,19 +3,27 @@ import styled from "styled-components";
 import ReportList from "./ReportList";
 
 const ChoiceMonth = () => {
-  const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  //1~12 month array에 push
+  let month = [];
+  let i = 0;
+  for (i = 0; i < 12; i++) {
+    month.push(i + 1);
+  }
 
+  //클릭된 월 활성화(조건부 스타일링,local storage 저장)
   const [activeMonth, setActiveMonth] = useState(
     localStorage.getItem("month") ? Number(localStorage.getItem("month")) : 1
   );
+
   const handleClick = (month) => {
     setActiveMonth(month);
   };
 
+  //activeMonth(클릭한 월 버튼)이 변경되면, local storage 값 변경
   useEffect(() => {
     localStorage.setItem("month", activeMonth);
   }, [activeMonth]);
-  console.log(activeMonth);
+
   return (
     <div>
       <ChoiceMonthButtonContainer>
@@ -25,7 +33,7 @@ const ChoiceMonth = () => {
           </MonthButton>
         ))}
       </ChoiceMonthButtonContainer>
-      {/* 내역 컴포넌트 */}
+
       <ReportList activeMonth={activeMonth} />
     </div>
   );
