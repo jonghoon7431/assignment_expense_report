@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import ChoiceMonth from "./ChoiceMonth";
-import Form from "./Form";
 
-const Container = () => {
-  return (
-    <WrapContainer>
-      <Form />
-      <ChoiceMonth />
-    </WrapContainer>
-  );
+const Container = ({ children }) => {
+  return <WrapContainer>{children}</WrapContainer>;
 };
 
 const WrapContainer = styled.div`

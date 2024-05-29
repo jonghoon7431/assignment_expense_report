@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getMonth } from "../redux/slices/MonthSlice";
-import MonthSpending from "./MonthSpending";
-import ReportList from "./ReportList";
 
 const ChoiceMonth = () => {
   const dispatch = useDispatch();
@@ -33,9 +31,6 @@ const ChoiceMonth = () => {
           </MonthButton>
         ))}
       </ChoiceMonthButtonContainer>
-
-      <MonthSpending />
-      <ReportList />
     </div>
   );
 };
