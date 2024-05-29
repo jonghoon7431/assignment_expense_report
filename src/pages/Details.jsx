@@ -46,6 +46,7 @@ const Details = () => {
     if (!format.test(date)) return alert("날짜가 유효하지 않습니다. 날짜 형식 : YYYY-MM-YY");
 
     alert("수정되었습니다");
+
     dispatch(editData({ paramsId, edit }));
     navigate("/");
   };
@@ -70,9 +71,9 @@ const Details = () => {
           <input type="text" value={description} name="description" onChange={onChangeHandler} />
         </InputDiv>
         <ButtonDiv>
-          <button onClick={editDetailItem}>수정</button>
-          <button onClick={deleteList}>삭제</button>
-          <button onClick={() => navigate("/")}>뒤로가기</button>
+          <EditButton onClick={editDetailItem}>수정</EditButton>
+          <DeleteButton onClick={deleteList}>삭제</DeleteButton>
+          <HomeButton onClick={() => navigate("/")}>뒤로가기</HomeButton>
         </ButtonDiv>
       </WrapContainer>
     </DetailDiv>
@@ -80,7 +81,7 @@ const Details = () => {
 };
 
 const DetailDiv = styled.div`
-  width: 100%;
+  width: 80%;
   height: auto;
   background-color: white;
   border-radius: 10px;
@@ -89,7 +90,6 @@ const DetailDiv = styled.div`
   padding: 1rem;
 `;
 const WrapContainer = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
 
@@ -99,6 +99,7 @@ const WrapContainer = styled.div`
   }
 `;
 const InputDiv = styled.div`
+  white-space: nowrap;
   font-size: 1.4rem;
   display: flex;
   width: 60%;
@@ -110,21 +111,54 @@ const InputDiv = styled.div`
   input {
     margin: 1rem;
   }
+  @media all and (max-width: 479px) {
+    width: 90%;
+    & label {
+      font-size: 1rem;
+    }
+  }
 `;
 const ButtonDiv = styled.div`
   display: flex;
-  margin: auto;
+  justify-content: center;
+  gap: 1rem;
+  white-space: nowrap;
+  margin: 10px auto;
   & button {
     font-size: 1.5rem;
     border: none;
     border-radius: 5px;
-    margin: 1rem;
+    /* margin: 1rem; */
     padding: 0.5rem 1rem;
     cursor: pointer;
-    &:hover {
-      background-color: var(--dark-blue);
-      color: white;
+  }
+  @media all and (max-width: 479px) {
+    width: 90%;
+
+    /* white-space: wrap; */
+    & button {
+      font-size: 0.8rem;
     }
+  }
+`;
+const EditButton = styled.button`
+  background-color: var(--blue);
+  color: white;
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+`;
+const DeleteButton = styled.button`
+  background-color: #ee2e2e;
+  color: white;
+  &:hover {
+    background-color: #ab0000;
+  }
+`;
+const HomeButton = styled.button`
+  &:hover {
+    background-color: darkgray;
+    color: white;
   }
 `;
 

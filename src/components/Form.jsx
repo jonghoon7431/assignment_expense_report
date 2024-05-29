@@ -23,51 +23,62 @@ const Form = () => {
     e.target.reset();
   };
   return (
-    <FormWrapContainer onSubmit={onSubmit}>
-      <StInputDiv>
-        <label>날짜</label>
+    <WrapContainer onSubmit={onSubmit}>
+      <FormContainer>
         <input type="date" name="date" />
-      </StInputDiv>
-      <StInputDiv>
-        <label>항목</label>
-        <input type="text" name="item" autoComplete="off" />
-      </StInputDiv>
-      <StInputDiv>
-        <label>금액</label>
-        <input type="number" name="amount" autoComplete="off" />
-      </StInputDiv>
-      <StInputDiv>
-        <label>내용</label>
-        <input type="text" name="description" autoComplete="off" />
-      </StInputDiv>
+        <input type="text" name="item" placeholder="항목" autoComplete="off" />
+        <input type="number" name="amount" placeholder="금액" autoComplete="off" />
+        <input type="text" name="description" placeholder="지출 내용" autoComplete="off" />
+      </FormContainer>
+
       <StFormButton>저장</StFormButton>
-    </FormWrapContainer>
+    </WrapContainer>
   );
 };
 
-const FormWrapContainer = styled.form`
+const WrapContainer = styled.form`
   border-radius: 10px;
   background-color: white;
   padding: 1rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 `;
-const StInputDiv = styled.div`
-  display: flex;
-  flex-direction: column;
+const FormContainer = styled.div`
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 10px;
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    grid-template-columns: repeat(2, 2fr);
+  }
   & input {
+    width: 90%;
+    box-sizing: border-box;
   }
 `;
+
 const StFormButton = styled.button`
-  width: 60px;
   border: none;
   border-radius: 10px;
   background-color: var(--blue);
   color: white;
   font-size: 1rem;
+  padding: 14px;
+  margin: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &:hover {
     background-color: var(--dark-blue);
+  }
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    height: 40px;
+  }
+  @media all and (max-width: 479px) {
+    width: 50px;
+    font-size: 0.9rem;
   }
 `;
 export default Form;
