@@ -10,9 +10,7 @@ const MonthSpending = () => {
   const month = data.filter((data) => data.date.split("-")[1].includes(activeMonth));
 
   let totalAmount = 0;
-  for (let i = 0; i < month.length; i++) {
-    totalAmount += month[i].amount;
-  }
+  month.forEach((e) => (totalAmount += Number(e.amount)));
 
   return (
     <MonthSpendingContainer>
