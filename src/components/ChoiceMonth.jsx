@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getMonth } from "../redux/slices/MonthSlice";
+import MonthSpending from "./MonthSpending";
 import ReportList from "./ReportList";
 
 const ChoiceMonth = () => {
-  //1~12 month array에 push
+  const dispatch = useDispatch();
+  const activeMonth = useSelector((state) => state.activeMonth);
+
+  //month 1-12
   let month = [];
   let i = 0;
   for (i = 0; i < 12; i++) {
     month.push(i + 1);
   }
 
-  //클릭된 월 활성화(조건부 스타일링,local storage 저장)
-  const [activeMonth, setActiveMonth] = useState(
-    localStorage.getItem("month") ? Number(localStorage.getItem("month")) : 1
-  );
-
   const handleClick = (month) => {
-    setActiveMonth(month);
+    dispatch(getMonth(month));
   };
 
-  //activeMonth(클릭한 월 버튼)이 변경되면, local storage 값 변경
   useEffect(() => {
     localStorage.setItem("month", activeMonth);
   }, [activeMonth]);
@@ -34,7 +34,8 @@ const ChoiceMonth = () => {
         ))}
       </ChoiceMonthButtonContainer>
 
-      <ReportList activeMonth={activeMonth} />
+      <MonthSpending />
+      <ReportList />
     </div>
   );
 };
@@ -44,21 +45,44 @@ const ChoiceMonthButtonContainer = styled.div`
   border: none;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1.2rem;
-  padding: 1.2rem 2rem;
-  margin: 20px 0;
+  grid-template-columns: repeat(6, 2fr);
+  text-align: center;
+  justify-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  margin: 20px auto;
+  white-space: nowrap;
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    /* gap: 1rem; */
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media all and (max-width: 479px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 const MonthButton = styled.button`
+  width: 90%;
+  display: flex;
+  justify-content: center;
   border: none;
   background-color: ${(props) => (props.$active ? "#0E487D" : "lightgray")};
   color: ${(props) => (props.$active ? "white" : "black")};
   border-radius: 10px;
-  font-size: 1.5rem;
+  font-size: 1.8vw;
   padding: 0.5rem 1rem;
+
   cursor: pointer;
   &:hover {
     background-color: ${(props) => (props.$active ? "#0E487D" : "grey")};
+  }
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    font-size: 16px;
+  }
+  @media all and (max-width: 479px) {
+    font-size: 16px;
   }
 `;
 
