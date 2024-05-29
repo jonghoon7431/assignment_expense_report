@@ -1,8 +1,11 @@
-# React + Vite
+# React 숙련주차 개인과제 - 개인 지출 관리 어플리케이션
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 필수 구현사항 
+과제는 Props Drilling → Context API → Redux 순으로 각각 별도의 브랜치를 만들어 제출해야 합니다.
+- 지출 CRUD 구현 (작성, 조회, 수정, 삭제)
+- 월별 지출 조회 기능 구현 (Home - Read)
+- 월별 지출 항목 등록 구현 (Home - Create)
+- 지출 상세 화면 구현 (Detail - Read)
+- 상세화면에서 지출 항목 수정 구현 (Detail - Update)
+- 상세화면에서 지출 항목 삭제 구현 (Detail - Delete)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
