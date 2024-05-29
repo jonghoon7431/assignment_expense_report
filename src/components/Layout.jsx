@@ -1,6 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+function Layout({ children }) {
+  return (
+    <StBackground>
+      <StMain>{children}</StMain>
+    </StBackground>
+  );
+}
+
+export default Layout;
+
 const StBackground = styled.div`
   position: fixed;
   background-color: var(--blue);
@@ -18,13 +28,3 @@ const StMain = styled.main`
     margin: 1rem 2rem;
   }
 `;
-
-function Layout({ children }) {
-  return (
-    <StBackground>
-      <StMain>{children}</StMain>
-    </StBackground>
-  );
-}
-
-export default Layout;
