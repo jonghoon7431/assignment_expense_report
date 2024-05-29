@@ -9,3 +9,13 @@
 - 상세화면에서 지출 항목 수정 구현 (Detail - Update)
 - 상세화면에서 지출 항목 삭제 구현 (Detail - Delete)
 
+### 완성본 미리보기
+
+
+home
+
+<img src="https://github.com/jonghoon7431/assignment_expense_report/assets/152875407/4b50e583-7e6d-43ab-ab15-9ca822d6a62c" width="700"/>
+
+detail page
+
+<img src ="https://github.com/jonghoon7431/assignment_expense_report/assets/152875407/3640b055-b275-47d1-9da0-1f67333ee40d" width="700"/>
