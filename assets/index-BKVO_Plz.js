@@ -414,4 +414,4 @@ ${Jp}
   margin: 20px auto;
   background-color: var(--light-blue);
   border-radius: 10px;
-`,dw=()=>T.jsx(cw,{}),pw=()=>T.jsx(N1,{children:T.jsx(I1,{children:T.jsxs(x1,{children:[T.jsx(es,{path:"/",element:T.jsx(dw,{})}),T.jsx(es,{path:"details/:id",element:T.jsx(D1,{})})]})})});function hw(){return T.jsxs(T.Fragment,{children:[T.jsx(Cv,{}),T.jsx(kp,{store:mh,children:T.jsx(pw,{})})]})}Ql.createRoot(document.getElementById("root")).render(T.jsx(kp,{store:mh,children:T.jsx(Ue.StrictMode,{children:T.jsx(hw,{})})}));
+`,dw=()=>T.jsx(cw,{}),pw=()=>T.jsx(N1,{basename:"/assignment_expense_report/",children:T.jsx(I1,{children:T.jsxs(x1,{children:[T.jsx(es,{path:"/",element:T.jsx(dw,{})}),T.jsx(es,{path:"/details/:id",element:T.jsx(D1,{})})]})})});function hw(){return T.jsxs(T.Fragment,{children:[T.jsx(Cv,{}),T.jsx(kp,{store:mh,children:T.jsx(pw,{})})]})}Ql.createRoot(document.getElementById("root")).render(T.jsx(kp,{store:mh,children:T.jsx(Ue.StrictMode,{children:T.jsx(hw,{})})}));
