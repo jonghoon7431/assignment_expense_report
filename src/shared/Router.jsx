@@ -6,11 +6,11 @@ import Home from "../pages/Home";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/assignment_expense_report/">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="details/:id" element={<Details />} />
+          <Route path="/details/:id" element={<Details />} />
         </Routes>
       </Layout>
     </BrowserRouter>
