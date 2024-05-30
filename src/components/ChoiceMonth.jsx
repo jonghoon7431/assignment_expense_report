@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { Section } from "../pages/Home";
 import { getMonth } from "../redux/slices/MonthSlice";
 
 const ChoiceMonth = () => {
   const dispatch = useDispatch();
   const activeMonth = useSelector((state) => state.activeMonth);
 
-  //month 1-12
   let month = [];
   let i = 0;
-  for (i = 0; i < 12; i++) {
-    month.push(i + 1);
+  for (i = 1; i <= 12; i++) {
+    month.push(i);
   }
 
   const handleClick = (month) => {
@@ -23,7 +23,7 @@ const ChoiceMonth = () => {
   }, [activeMonth]);
 
   return (
-    <div>
+    <Section>
       <ChoiceMonthButtonContainer>
         {month.map((month) => (
           <MonthButton key={month} $active={activeMonth === month} onClick={() => handleClick(month)}>
@@ -31,20 +31,17 @@ const ChoiceMonth = () => {
           </MonthButton>
         ))}
       </ChoiceMonthButtonContainer>
-    </div>
+    </Section>
   );
 };
 
 const ChoiceMonthButtonContainer = styled.div`
-  background-color: white;
   border: none;
-  border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(6, 2fr);
   text-align: center;
   justify-items: center;
   gap: 0.8rem;
-  padding: 1rem;
   margin: 20px auto;
   white-space: nowrap;
   @media all and (min-width: 768px) and (max-width: 1023px) {

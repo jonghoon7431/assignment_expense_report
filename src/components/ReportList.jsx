@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Section } from "../pages/Home";
 
 const ReportList = () => {
   const data = useSelector((state) => state.data);
   const activeMonth = useSelector((state) => state.activeMonth);
 
   return (
-    <ReportListContainer>
+    <Section>
       <H3
         style={{
           paddingTop: "1.5rem",
@@ -47,16 +48,10 @@ const ReportList = () => {
             </Link>
           ))}
       </ReportListUl>
-    </ReportListContainer>
+    </Section>
   );
 };
 
-const ReportListContainer = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  height: auto;
-  text-overflow: ellipsis;
-`;
 const H3 = styled.h3`
   font-weight: bold;
 `;
