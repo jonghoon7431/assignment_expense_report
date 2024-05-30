@@ -10,14 +10,14 @@ const ReportList = () => {
 
   return (
     <Section>
-      <H3
+      <H2
         style={{
           paddingTop: "1.5rem",
           paddingLeft: "2rem",
         }}
       >
         내역
-      </H3>
+      </H2>
       <ReportListUl>
         {data
           .filter((prevData) => Number(prevData.date.split("-")[1]) === activeMonth)
@@ -31,7 +31,7 @@ const ReportList = () => {
               }}
             >
               <List>
-                <H3 style={{ marginBottom: "1rem" }}>{data.date}</H3>
+                <H2 style={{ marginBottom: "1rem" }}>{data.date}</H2>
                 <StP>
                   {data.item}-{data.description}
                 </StP>
@@ -52,8 +52,9 @@ const ReportList = () => {
   );
 };
 
-const H3 = styled.h3`
+const H2 = styled.h2`
   font-weight: bold;
+  font-size: 1.2rem;
 `;
 const ReportListUl = styled.ul`
   padding: 1rem;
@@ -88,6 +89,9 @@ const AmountWrap = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
+  @media all and (max-width: 479px) {
+    display: none;
+  }
 `;
 
 export default ReportList;

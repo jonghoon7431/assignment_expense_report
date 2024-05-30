@@ -7,7 +7,7 @@ const Container = ({ children }) => {
 
 const WrapContainer = styled.div`
   height: auto;
-  padding: 2rem;
+  padding: 1.2rem;
   margin: 20px auto;
   background-color: var(--light-blue);
   border-radius: 10px;

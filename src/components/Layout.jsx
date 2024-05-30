@@ -24,7 +24,6 @@ const StMain = styled.main`
 
   /* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
   @media all and (max-width: 479px) {
-    /* width: 380px; */
     margin: 1rem 2rem;
   }
 `;
