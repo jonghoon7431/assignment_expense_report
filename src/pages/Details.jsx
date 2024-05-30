@@ -43,7 +43,9 @@ const Details = () => {
     if (!date.trim() || !item.trim() || !amount) return alert("날짜, 항목, 금액은 공백 입력이 불가합니다");
     //날짜 유효성검사 yyyy-mm-dd
     const format = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-    if (!format.test(date)) return alert("날짜가 유효하지 않습니다. 날짜 형식 : YYYY-MM-YY");
+    if (!format.test(date)) return alert("유효한 날짜가 아닙니다. 날짜 형식 : YYYY-MM-YY");
+    //금액이 음수나 0일 경우
+    if (amount <= 0) return alert("입력 금액이 올바른지 확인해주세요");
 
     alert("수정되었습니다");
 
@@ -56,19 +58,40 @@ const Details = () => {
       <WrapContainer>
         <InputDiv>
           <label>날짜: </label>
-          <input type="text" value={date} name="date" onChange={onChangeHandler} />
+          <input
+            type="text"
+            value={date}
+            name="date"
+            onChange={onChangeHandler}
+            placeholder="YYYY-MM-DD"
+            autoComplete="off"
+          />
         </InputDiv>
         <InputDiv>
           <label>항목: </label>
-          <input type="text" value={item} name="item" onChange={onChangeHandler} />
+          <input type="text" value={item} name="item" onChange={onChangeHandler} placeholder="지출 항목" />
         </InputDiv>
         <InputDiv>
           <label>금액: </label>
-          <input type="number" value={amount} name="amount" onChange={onChangeHandler} />
+          <input
+            type="number"
+            value={amount}
+            name="amount"
+            onChange={onChangeHandler}
+            placeholder="금액"
+            autoComplete="off"
+          />
         </InputDiv>
         <InputDiv>
           <label>내용: </label>
-          <input type="text" value={description} name="description" onChange={onChangeHandler} />
+          <input
+            type="text"
+            value={description}
+            name="description"
+            onChange={onChangeHandler}
+            placeholder="지출 내용"
+            autoComplete="off"
+          />
         </InputDiv>
         <ButtonDiv>
           <EditButton onClick={editDetailItem}>수정</EditButton>

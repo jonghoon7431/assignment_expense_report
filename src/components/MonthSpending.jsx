@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Section } from "../pages/Home";
 
 const MonthSpending = () => {
   const activeMonth = useSelector((state) => state.activeMonth);
@@ -13,21 +14,16 @@ const MonthSpending = () => {
   month.forEach((e) => (totalAmount += Number(e.amount)));
 
   return (
-    <MonthSpendingContainer>
+    <Section>
       <SubTitle>
         {activeMonth}월 총 지출 : {totalAmount.toLocaleString()}원
       </SubTitle>
-    </MonthSpendingContainer>
+    </Section>
   );
 };
 
-const MonthSpendingContainer = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  margin: 20px 0;
-  padding: 1.5rem;
-`;
 const SubTitle = styled.h3`
+  padding: 1.5rem;
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;

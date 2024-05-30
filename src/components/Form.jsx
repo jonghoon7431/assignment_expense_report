@@ -18,6 +18,8 @@ const Form = () => {
     if (!date || !item.trim() || !amount.trim() || !date.trim()) return alert("정보를 모두 기입해주세요");
     //올해가 아닌 년도 입력시
     if (new Date().getFullYear() !== +date.slice(0, 4)) return alert("올해의 지출 정보만 담을 수 있습니다");
+    //금액이 음수나 0일 경우
+    if (amount <= 0) return alert("입력 금액이 올바른지 확인해주세요");
 
     dispatch(addFormData({ id: uuidv4(), date, item, amount, description }));
     e.target.reset();
@@ -26,7 +28,7 @@ const Form = () => {
     <WrapContainer onSubmit={onSubmit}>
       <FormContainer>
         <input type="date" name="date" />
-        <input type="text" name="item" placeholder="항목" autoComplete="off" />
+        <input type="text" name="item" placeholder="항목" />
         <input type="number" name="amount" placeholder="금액" autoComplete="off" />
         <input type="text" name="description" placeholder="지출 내용" autoComplete="off" />
       </FormContainer>
